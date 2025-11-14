@@ -46,9 +46,7 @@ export default function Home() {
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight drop-shadow-2xl">
               Üsküdar Amerikan Lisesi
               <br />
-              <span className="text-[white]">
-                Mezunlar Derneği
-              </span>
+              Mezunlar Derneği
             </h1>
             <p className="text-lg md:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed drop-shadow-lg">
               Mezunlarımızı bir araya getiren, bağları güçlendiren ve topluma katkıda bulunan bir platform
