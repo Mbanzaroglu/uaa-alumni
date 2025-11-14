@@ -53,7 +53,7 @@ export default function MezunlarEvi() {
                 background: 'linear-gradient(to top, rgba(10, 15, 30, 0.95) 0%, rgba(10, 15, 30, 0.7) 40%, transparent 70%)'
               }}
             />
-          </div>
+        </div>
 
           {/* Content Overlay */}
           <div className="absolute inset-0 flex flex-col justify-end p-8 sm:p-12 md:p-16 lg:p-20">
@@ -91,13 +91,13 @@ export default function MezunlarEvi() {
             <div className="flex items-center justify-center w-12 h-12 rounded-full bg-[rgba(33,82,133,0.1)] border border-[rgba(33,82,133,0.2)] group-hover:bg-[rgba(33,82,133,0.2)] transition-all duration-300">
               <svg className="w-5 h-5 text-[rgb(60,120,180)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
-              </svg>
-            </div>
+                  </svg>
+                </div>
             <div className="flex flex-col">
               <span className="text-xs uppercase tracking-widest text-white/40 font-medium mb-1">Mekan Ücreti</span>
               <span className="text-base text-white font-light">350 TL / gün</span>
-            </div>
-          </div>
+                </div>
+              </div>
 
           {/* Divider */}
           <div className="hidden md:block w-px h-12 bg-white/5" />
@@ -107,15 +107,15 @@ export default function MezunlarEvi() {
             <div className="flex items-center justify-center w-12 h-12 rounded-full bg-[rgba(33,82,133,0.1)] border border-[rgba(33,82,133,0.2)] group-hover:bg-[rgba(33,82,133,0.2)] transition-all duration-300">
               <svg className="w-5 h-5 text-[rgb(60,120,180)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-              </svg>
-            </div>
+                  </svg>
+                </div>
             <div className="flex flex-col">
               <span className="text-xs uppercase tracking-widest text-white/40 font-medium mb-1">Telefon</span>
               <a href="tel:+902163349221" className="text-base text-white font-light hover:text-[rgb(60,120,180)] transition-colors duration-200">
                 (0216) 334 92 21
-              </a>
-            </div>
-          </div>
+                  </a>
+                </div>
+              </div>
 
           {/* Divider */}
           <div className="hidden md:block w-px h-12 bg-white/5" />
@@ -125,8 +125,8 @@ export default function MezunlarEvi() {
             <div className="flex items-center justify-center w-12 h-12 rounded-full bg-[rgba(33,82,133,0.1)] border border-[rgba(33,82,133,0.2)] group-hover:bg-[rgba(33,82,133,0.2)] transition-all duration-300">
               <svg className="w-5 h-5 text-[rgb(60,120,180)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
-            </div>
+                  </svg>
+                </div>
             <div className="flex flex-col">
               <span className="text-xs uppercase tracking-widest text-white/40 font-medium mb-1">E-posta</span>
               <a href="mailto:alumniuaa@uaa.k12.tr" className="text-base text-white font-light hover:text-[rgb(60,120,180)] transition-colors duration-200">
@@ -255,7 +255,7 @@ export default function MezunlarEvi() {
                   className="px-4 py-3 bg-[rgba(255,255,255,0.05)] border border-white/10 text-white text-base rounded-lg transition-all duration-300 focus:outline-none focus:border-[rgb(33,82,133)] focus:bg-[rgba(255,255,255,0.08)] placeholder:text-white/30"
                   required
                 />
-              </div>
+                </div>
 
               {/* Cep Telefon */}
               <div className="flex flex-col">
@@ -293,8 +293,8 @@ export default function MezunlarEvi() {
                 <label className="text-sm text-white/70 mb-2 font-medium">
                   Güvenlik Kodu <span className="text-[rgb(60,120,180)]">*</span>
                 </label>
-                <div className="flex gap-4 items-center">
-                  <div className="bg-[rgba(255,255,255,0.08)] px-6 py-3 font-mono text-xl tracking-widest border border-white/10 rounded-lg text-[rgb(90,150,220)]">
+                <div className="flex gap-3 items-stretch">
+                  <div className="flex-1 bg-[rgba(255,255,255,0.08)] px-4 py-3 font-mono text-lg tracking-widest border border-white/10 rounded-lg text-[rgb(90,150,220)] text-center flex items-center justify-center">
                     13754
                   </div>
                   <input
@@ -303,6 +303,7 @@ export default function MezunlarEvi() {
                     value={formData.captcha}
                     onChange={handleInputChange}
                     placeholder="Kodu giriniz"
+                    maxLength={5}
                     className="flex-1 px-4 py-3 bg-[rgba(255,255,255,0.05)] border border-white/10 text-white text-base rounded-lg transition-all duration-300 focus:outline-none focus:border-[rgb(33,82,133)] focus:bg-[rgba(255,255,255,0.08)] placeholder:text-white/30"
                     required
                   />
@@ -320,7 +321,7 @@ export default function MezunlarEvi() {
               </button>
             </div>
           </form>
-        </div>
+                </div>
       </section>
 
       {/* Modern Information Section */}
@@ -330,7 +331,7 @@ export default function MezunlarEvi() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-16 items-start">
             {/* Left Column - Main Description */}
             <div className="lg:col-span-2 space-y-8">
-              <div>
+                <div>
                 <div className="inline-block mb-6">
                   <div className="h-1 w-20 bg-gradient-to-r from-[rgb(33,82,133)] to-[rgb(60,120,180)] rounded-full mb-4"></div>
                 </div>
@@ -353,7 +354,7 @@ export default function MezunlarEvi() {
                 <p className="text-white/80 text-sm leading-relaxed mt-2">
                   Durum, mekan müsaitliğine göre en geç <span className="text-white font-medium">ertesi iş günü</span> içinde bildirilir.
                 </p>
-              </div>
+          </div>
 
               {/* İletişim Saatleri */}
               <div className="border-l-2 border-[rgb(33,82,133)]/30 pl-6 py-2">
