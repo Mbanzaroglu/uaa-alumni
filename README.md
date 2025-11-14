@@ -1,36 +1,168 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# UAA Alumni - Uludağ Üniversitesi Mezunlar Derneği
 
-## Getting Started
+Modern, glassmorphism tasarımlı, mobile-first yaklaşımla geliştirilmiş mezunlar derneği web sitesi.
 
-First, run the development server:
+## Özellikler
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- 🎨 **Glassmorphism Tasarım**: Modern ve minimalist glassmorphism efektleri
+- 🌙 **Light/Dark Mode**: Sistem tercihine göre otomatik tema yönetimi
+- 📱 **Mobile-First**: Tüm cihazlarda mükemmel görünüm
+- ⚡ **Next.js 16**: App Router ile yüksek performanslı React uygulaması
+- 🎯 **TypeScript**: Tip güvenli kod yapısı
+- 🎭 **Tailwind CSS**: Hızlı ve esnek stil yönetimi
+- 📦 **JSON İçerik Yönetimi**: Kolay içerik güncellemeleri için JSON tabanlı sistem
+
+## Teknolojiler
+
+- **Next.js 16** - React framework
+- **TypeScript** - Tip güvenli JavaScript
+- **Tailwind CSS 4** - Utility-first CSS framework
+- **next-themes** - Theme management
+- **React 19** - UI kütüphanesi
+
+## Proje Yapısı
+
+```
+uaa-alumni/
+├── app/                          # Next.js App Router sayfaları
+│   ├── page.tsx                  # Ana sayfa (/)
+│   ├── haberler/                 # Haberler sayfası
+│   ├── uyelik/                   # Üyelik sayfaları
+│   │   ├── page.tsx
+│   │   ├── neden-uyelik/
+│   │   └── uye-ol/
+│   └── dernek-hakkinda/          # Dernek hakkında sayfaları
+│       ├── page.tsx
+│       ├── hakkimizda/
+│       ├── misyon-vizyon/
+│       ├── mezunlar-evi/
+│       ├── gizlilik-politikasi/
+│       └── yonetim/
+│           └── gecmis-yonetim-kurulu/
+├── components/                   # React bileşenleri
+│   ├── navbar.tsx               # Navigasyon menüsü
+│   ├── footer.tsx               # Footer bileşeni
+│   └── theme-toggle.tsx         # Tema değiştirici
+├── lib/
+│   ├── constants/
+│   │   └── content.json         # Tüm içerik verileri
+│   ├── providers/
+│   │   └── theme-provider.tsx   # Tema provider
+│   └── types/
+│       └── content.ts           # TypeScript tip tanımları
+└── app/
+    ├── globals.css              # Global stiller ve glassmorphism utilities
+    └── layout.tsx               # Root layout
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Kurulum
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Bağımlılıkları yükleyin:
+```bash
+npm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. Geliştirme sunucusunu başlatın:
+```bash
+npm run dev
+```
 
-## Learn More
+3. Tarayıcıda açın: [http://localhost:3000](http://localhost:3000)
 
-To learn more about Next.js, take a look at the following resources:
+## İçerik Yönetimi
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Tüm içerikler `lib/constants/content.json` dosyasında merkezi olarak yönetilmektedir. Bu dosyayı düzenleyerek:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Site bilgileri
+- Navigasyon menüleri
+- Sayfa içerikleri
+- Haberler
+- Yönetim kurulu bilgileri
+- Footer linkleri
 
-## Deploy on Vercel
+gibi tüm içerikleri kolayca güncelleyebilirsiniz.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### İçerik Ekleme/Değiştirme
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+`content.json` dosyasını düzenleyerek içerikleri güncelleyebilirsiniz. JSON yapısı TypeScript tipleriyle korunmaktadır (`lib/types/content.ts`).
+
+## Glassmorphism Stilleri
+
+Projede kullanılan glassmorphism utility class'ları:
+
+- `.glass` - Standart glassmorphism efekti
+- `.glass-light` - Hafif blur efekti
+- `.glass-strong` - Güçlü blur ve daha belirgin efekt
+
+Bu class'lar `app/globals.css` dosyasında tanımlanmıştır ve light/dark mode'a göre otomatik olarak uyum sağlar.
+
+## Tema Yönetimi
+
+Tema yönetimi `next-themes` kütüphanesi ile yapılmaktadır. Kullanıcılar:
+
+- Sistem tercihlerine göre otomatik tema seçimi
+- Manuel light/dark mode değiştirme
+- Tema tercihinin tarayıcıda saklanması
+
+özelliklerini kullanabilirler.
+
+## Responsive Tasarım
+
+Proje mobile-first yaklaşımıyla geliştirilmiştir. Breakpoint'ler:
+
+- `sm:` - 640px ve üzeri
+- `md:` - 768px ve üzeri
+- `lg:` - 1024px ve üzeri
+- `xl:` - 1280px ve üzeri
+
+## Sayfalar
+
+- `/` - Ana sayfa
+- `/haberler` - Haberler listesi
+- `/uyelik` - Üyelik bilgileri
+- `/uyelik/neden-uyelik` - Üyelik avantajları
+- `/uyelik/uye-ol` - Üyelik başvuru formu
+- `/dernek-hakkinda` - Dernek hakkında ana sayfa
+- `/dernek-hakkinda/hakkimizda` - Hakkımızda
+- `/dernek-hakkinda/misyon-vizyon` - Misyon ve vizyon
+- `/dernek-hakkinda/mezunlar-evi` - Mezunlar evi bilgileri
+- `/dernek-hakkinda/gizlilik-politikasi` - Gizlilik politikası
+- `/dernek-hakkinda/yonetim` - Yönetim kurulu
+- `/dernek-hakkinda/yonetim/gecmis-yonetim-kurulu` - Geçmiş yönetim kurulları
+
+## Özelleştirme
+
+### Renkler
+
+Renkler `app/globals.css` dosyasındaki CSS değişkenleri ile yönetilmektedir:
+
+```css
+:root {
+  --primary: #2563eb;
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  /* ... */
+}
+```
+
+### Fontlar
+
+Fontlar `app/layout.tsx` dosyasında Geist font ailesi ile yapılandırılmıştır.
+
+## Build
+
+Production build için:
+
+```bash
+npm run build
+npm start
+```
+
+## Notlar
+
+- Bu proje frontend-only bir uygulamadır. Backend veya veritabanı kullanılmamaktadır.
+- Form verileri şu anda demo amaçlıdır ve gerçek veri işleme yapılmamaktadır.
+- Tüm içerikler JSON dosyasından yönetilmektedir.
+
+## Lisans
+
+Bu proje özel kullanım için geliştirilmiştir.

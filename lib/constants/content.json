@@ -1,0 +1,195 @@
+{
+  "site": {
+    "name": "UAA Alumni",
+    "description": "Üsküdar Amerikan Lisesi'nden Yetişenler Derneği",
+    "ustoreUrl": "https://ustore.ualyetder.org"
+  },
+  "navigation": {
+    "home": "Ana Sayfa",
+    "news": "Haberler",
+    "membership": "Üyelik",
+    "about": "Dernek Hakkında"
+  },
+  "home": {
+    "title": "Hoş Geldiniz",
+    "subtitle": "Üsküdar Amerikan Lisesi'nden Yetişenler Derneği",
+    "description": "Mezunlarımızı bir araya getiren, dayanışmayı güçlendiren ve okulumuzla bağlarımızı sürdüren bir platform.",
+    "cta": {
+      "primary": "Üye Ol",
+      "secondary": "Daha Fazla Bilgi"
+    }
+  },
+  "news": {
+    "title": "Haberler",
+    "subtitle": "Son gelişmeler ve etkinliklerden haberdar olun"
+  },
+  "membership": {
+    "title": "Üyelik",
+    "subtitle": "Derneğimize katılın, ailemizin bir parçası olun",
+    "description": "Üyelik sayesinde mezunlarımızla iletişimde kalın, özel etkinliklere katılın ve farklı avantajlardan yararlanın.",
+    "benefits": [
+      "Özel etkinliklere katılım hakkı",
+      "Mezunlar ağına erişim",
+      "Özel indirimler ve avantajlar",
+      "Düzenli haber bülteni",
+      "Mesleki network fırsatları"
+    ],
+    "cta": "Hemen Üye Ol"
+  },
+  "whyMembership": {
+    "title": "Neden Üye Olmalısınız?",
+    "subtitle": "Derneğimizde yer almanın avantajları",
+    "sections": [
+      {
+        "title": "Güçlü Ağ",
+        "description": "Binlerce mezunumuzla profesyonel ve kişisel bağlar kurun.",
+        "icon": "network"
+      },
+      {
+        "title": "Etkinlikler",
+        "description": "Düzenli olarak düzenlediğimiz etkinliklere katılma imkanı.",
+        "icon": "events"
+      },
+      {
+        "title": "Avantajlar",
+        "description": "Üyelere özel indirimler, kampanyalar ve fırsatlar.",
+        "icon": "benefits"
+      },
+      {
+        "title": "Dayanışma",
+        "description": "Mezunlarımız arasında dayanışma ve destek ağı.",
+        "icon": "solidarity"
+      }
+    ]
+  },
+  "about": {
+    "title": "Dernek Hakkında",
+    "subtitle": "Misyonumuz ve vizyonumuz",
+    "description": "Üsküdar Amerikan Lisesi'nden Yetişenler Derneği olarak mezunlarımızı bir araya getiriyor, okulumuzla bağları güçlendiriyoruz."
+  },
+  "aboutUs": {
+    "title": "Hakkımızda",
+    "content": "Üsküdar Amerikan Lisesi'nden Yetişenler Derneği (UAA Alumni), mezunlarımızı bir araya getiren, dayanışmayı güçlendiren ve okulumuzla bağlarımızı sürdüren bir platformdur. Uzun yıllardır faaliyet gösteren derneğimiz, binlerce mezunumuza hizmet vermektedir."
+  },
+  "missionVision": {
+    "mission": {
+      "title": "Misyonumuz",
+      "content": "Mezunlarımızı bir araya getirerek, aralarındaki iletişimi ve dayanışmayı güçlendirmek; okulumuzla olan bağları sürdürmek ve mezunların kişisel ve mesleki gelişimlerine katkıda bulunmaktır."
+    },
+    "vision": {
+      "title": "Vizyonumuz",
+      "content": "Türkiye'nin en aktif ve etkili mezunlar derneklerinden biri olmak; mezunlar arasında güçlü bir ağ oluşturmak ve bu ağ sayesinde hem mezunlarımızın hem de okulumuzun gelişimine katkı sağlamaktır."
+    }
+  },
+  "alumniHouse": {
+    "title": "Mezunlar Evi / Kinney Cottage",
+    "description": "Mezunlar evimiz (Kinney Cottage), mezunlarımızın bir araya geldiği, etkinlikler düzenlediği ve sosyalleştiği özel bir mekandır.",
+    "address": "Üsküdar Amerikan Lisesi, Vakıf Sok. No: 1 Bağlarbaşı, 34664 Üsküdar İSTANBUL",
+    "phone": "+90 216 334 92 21",
+    "mobile": "+90 545 553 52 82",
+    "fax": "+90 216 553 52 82",
+    "email": "alumniuaa@uaa.k12.tr",
+    "officeHours": "09.00 - 16.00 (Hafta içi her gün)",
+    "features": [
+      "Toplantı odaları",
+      "Sosyal alanlar",
+      "Etkinlik mekanları",
+      "Kampüs içi konum"
+    ]
+  },
+  "privacy": {
+    "title": "Gizlilik Politikası",
+    "lastUpdated": "2024-01-01",
+    "sections": [
+      {
+        "title": "Kişisel Verilerin Korunması",
+        "content": "Derneğimiz, 6698 sayılı Kişisel Verilerin Korunması Kanunu'na uygun olarak kişisel verilerinizi korumaktadır."
+      },
+      {
+        "title": "Veri Toplama",
+        "content": "Web sitemizde ziyaret edilen sayfalar, kullanılan cihazlar ve benzeri teknik veriler toplanmaktadır."
+      },
+      {
+        "title": "Veri Kullanımı",
+        "content": "Toplanan veriler sadece dernek faaliyetlerinin yürütülmesi ve hizmet kalitesinin artırılması amacıyla kullanılmaktadır."
+      },
+      {
+        "title": "Çerezler",
+        "content": "Web sitemizde kullanıcı deneyimini iyileştirmek için çerezler kullanılmaktadır."
+      }
+    ]
+  },
+  "management": {
+    "title": "Yönetim Kurulu",
+    "subtitle": "Derneğimizi yöneten değerli üyelerimiz",
+    "members": [
+      {
+        "id": 1,
+        "name": "Ahmet Yılmaz",
+        "position": "Başkan",
+        "department": "Üsküdar Amerikan Lisesi",
+        "year": "1995",
+        "image": "/images/management-1.jpg"
+      },
+      {
+        "id": 2,
+        "name": "Ayşe Demir",
+        "position": "Başkan Yardımcısı",
+        "department": "Üsküdar Amerikan Lisesi",
+        "year": "2000",
+        "image": "/images/management-2.jpg"
+      },
+      {
+        "id": 3,
+        "name": "Mehmet Kaya",
+        "position": "Genel Sekreter",
+        "department": "Üsküdar Amerikan Lisesi",
+        "year": "1998",
+        "image": "/images/management-3.jpg"
+      }
+    ]
+  },
+  "pastManagement": {
+    "title": "Geçmiş Yönetim Kurulları",
+    "subtitle": "Derneğimizin geçmiş dönem yönetim kurulları",
+    "periods": [
+      {
+        "period": "2020-2023",
+        "president": "Ali Veli",
+        "members": ["Ali Veli", "Fatma Şahin", "Mustafa Öz", "Zeynep Yıldız"]
+      },
+      {
+        "period": "2017-2020",
+        "president": "Hasan Hüseyin",
+        "members": ["Hasan Hüseyin", "Elif Kara", "Can Tekin", "Seda Ak"]
+      }
+    ]
+  },
+  "footer": {
+    "links": [
+      {
+        "title": "Hızlı Linkler",
+        "items": [
+          { "label": "Ana Sayfa", "href": "/" },
+          { "label": "Haberler", "href": "/haberler" },
+          { "label": "Üyelik", "href": "/uyelik" },
+          { "label": "Dernek Hakkında", "href": "/dernek-hakkinda" }
+        ]
+      },
+      {
+        "title": "İletişim",
+        "items": [
+          { "label": "Email", "href": "mailto:alumniuaa@uaa.k12.tr" },
+          { "label": "Telefon", "href": "tel:+902163349221" },
+          { "label": "Adres", "href": "#" }
+        ]
+      }
+    ],
+    "social": {
+      "facebook": "https://www.facebook.com/UAA.Alumni.Association/",
+      "instagram": "https://www.instagram.com/alumniuaa/",
+      "linkedin": "https://www.linkedin.com/in/uaa-alumni-association/"
+    },
+    "copyright": "© 2025 Üsküdar Amerikan Lisesi'nden Yetişenler Derneği - Her Hakkı Saklıdır."
+  }
+}
