@@ -54,8 +54,8 @@ export default function MezunlarEvi() {
             typeIntervalRef.current = null;
           }
         }
-      }, 50); // Her karakter için 50ms
-    }, 800);
+      }, 30); // Her karakter için 50ms
+    }, 700);
 
     // Bilgi bölümü animasyonu - typewriter'dan sonra
     const infoSectionTimer = setTimeout(() => {
