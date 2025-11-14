@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 const benefits = [
@@ -51,6 +52,17 @@ const benefits = [
 ];
 
 export default function NedenUyelik() {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    // Trigger animation after component mounts
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 50);
+    
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="relative min-h-screen bg-[#0a0f1e] overflow-hidden">
       {/* Diagonal Header Section */}
@@ -67,10 +79,24 @@ export default function NedenUyelik() {
         />
         
         <div className="relative z-10 max-w-6xl mx-auto text-center">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light text-white mb-6 tracking-tight">
+          <h1 
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light text-white mb-6 tracking-tight"
+            style={{
+              opacity: isVisible ? 1 : 0,
+              transform: isVisible ? 'translateY(0)' : 'translateY(32px)',
+              transition: 'opacity 1000ms ease-out, transform 1000ms ease-out'
+            }}
+          >
             Neden Üye Olmalıyım?
           </h1>
-          <p className="text-lg sm:text-xl md:text-2xl text-white/80 max-w-3xl mx-auto leading-relaxed">
+          <p 
+            className="text-lg sm:text-xl md:text-2xl text-white/80 max-w-3xl mx-auto leading-relaxed"
+            style={{
+              opacity: isVisible ? 1 : 0,
+              transform: isVisible ? 'translateY(0)' : 'translateY(32px)',
+              transition: 'opacity 1000ms ease-out 300ms, transform 1000ms ease-out 300ms'
+            }}
+          >
             Dernek üyeliği ile birlikte gelen tüm ayrıcalıkları ve imkanları keşfedin. UAA mezunları için özel olarak tasarlanmış bu avantajlardan yararlanın.
           </p>
         </div>
@@ -88,6 +114,11 @@ export default function NedenUyelik() {
                 className={`grid grid-cols-1 gap-8 items-start ${
                   isEven ? 'lg:grid-cols-[1fr_250px] lg:gap-[50px]' : 'lg:grid-cols-[250px_1fr] lg:gap-[50px]'
                 }`}
+                style={{
+                  opacity: isVisible ? 1 : 0,
+                  transform: isVisible ? 'translateY(0)' : 'translateY(48px)',
+                  transition: `opacity 700ms ease-out ${(index + 1) * 150}ms, transform 700ms ease-out ${(index + 1) * 150}ms`
+                }}
               >
                 {/* Number Circle - Odd itemlarda en sola, Even itemlarda en sağa */}
                 <div className={`relative flex items-center justify-center ${isEven ? 'lg:justify-end lg:order-2' : 'lg:justify-start'}`}>
@@ -162,7 +193,14 @@ export default function NedenUyelik() {
           clipPath: 'polygon(0 15%, 100% 0, 100% 100%, 0 100%)'
         }}
       >
-        <div className="max-w-4xl mx-auto text-center">
+        <div 
+          className="max-w-4xl mx-auto text-center"
+          style={{
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? 'translateY(0)' : 'translateY(32px)',
+            transition: 'opacity 1000ms ease-out 1000ms, transform 1000ms ease-out 1000ms'
+          }}
+        >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-white mb-6">
             Hemen Üye Olun
           </h2>
