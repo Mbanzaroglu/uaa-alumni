@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import content from '@/lib/constants/content.json';
 
 const founders = [
@@ -15,8 +15,27 @@ const founders = [
 
 export default function Hakkimizda() {
   const chaptersRef = useRef<(HTMLDivElement | null)[]>([]);
+  const [isVisible, setIsVisible] = useState(false);
+  const scrollIndicatorRef = useRef<HTMLDivElement>(null);
+
+  // Hero content animasyonu için useLayoutEffect kullan - DOM güncellemelerinden önce çalışır
+  useLayoutEffect(() => {
+    // requestAnimationFrame ile animasyonu tetikle - daha güvenilir
+    let timer: NodeJS.Timeout;
+    const rafId = requestAnimationFrame(() => {
+      timer = setTimeout(() => {
+        setIsVisible(true);
+      }, 50);
+    });
+    
+    return () => {
+      cancelAnimationFrame(rafId);
+      if (timer) clearTimeout(timer);
+    };
+  }, []);
 
   useEffect(() => {
+    // Chapters için intersection observer
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -35,19 +54,27 @@ export default function Hakkimizda() {
     return () => observer.disconnect();
   }, []);
 
+  const handleScrollClick = () => {
+    const viewportHeight = window.innerHeight;
+    window.scrollTo({
+      top: viewportHeight,
+      behavior: 'smooth'
+    });
+  };
+
   return (
     <div>
       {/* Hero Full Screen */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        {/* Background with primary color gradient */}
+      <section className="relative h-screen flex items-center justify-center overflow-hidden -mt-16">
+        {/* Background with primary color gradient - Navbar'ın altında kalacak */}
         <div 
-          className="absolute inset-0 dark:hidden"
+          className="absolute inset-0 dark:hidden -z-10"
           style={{
             background: 'radial-gradient(circle at 30% 50%, rgba(33,82,133,0.2) 0%, rgba(33,82,133,0.05) 50%, transparent 100%)'
           }}
         ></div>
         <div 
-          className="absolute inset-0 hidden dark:block"
+          className="absolute inset-0 hidden dark:block -z-10"
           style={{
             background: 'radial-gradient(circle at 30% 50%, rgba(33,82,133,0.3) 0%, rgba(33,82,133,0.1) 50%, transparent 100%)'
           }}
@@ -55,7 +82,7 @@ export default function Hakkimizda() {
         
         {/* Pattern Overlay */}
         <div 
-          className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]"
+          className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05] -z-10"
           style={{
             backgroundImage: `repeating-linear-gradient(
               0deg,
@@ -70,17 +97,39 @@ export default function Hakkimizda() {
         {/* Hero Content */}
         <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
           <h1 className="text-6xl md:text-8xl lg:text-9xl font-extralight mb-8 leading-none">
-            <span className="bg-gradient-to-r from-[rgb(33,82,133)] via-[rgb(60,120,180)] to-[rgb(90,150,220)] bg-clip-text text-transparent dark:from-white dark:via-gray-200 dark:to-gray-400">
+            <span 
+              className="bg-gradient-to-r from-[rgb(33,82,133)] via-[rgb(60,120,180)] to-[rgb(90,150,220)] bg-clip-text text-transparent dark:from-white dark:via-gray-200 dark:to-gray-400 inline-block"
+              style={{ 
+                opacity: isVisible ? 1 : 0,
+                transform: isVisible ? 'translateX(0)' : 'translateX(-128px)',
+                transition: 'opacity 1200ms cubic-bezier(0.16, 1, 0.3, 1), transform 1200ms cubic-bezier(0.16, 1, 0.3, 1)',
+                transitionDelay: '100ms',
+                willChange: 'transform, opacity'
+              }}
+            >
               1952
             </span>
           </h1>
-          <p className="text-xl md:text-2xl text-foreground/70 dark:text-white/70 font-light">
+          <p 
+            className="text-xl md:text-2xl text-foreground/70 dark:text-white/70 font-light"
+            style={{ 
+              opacity: isVisible ? 1 : 0,
+              transform: isVisible ? 'translateX(0)' : 'translateX(-128px)',
+              transition: 'opacity 1200ms cubic-bezier(0.16, 1, 0.3, 1), transform 1200ms cubic-bezier(0.16, 1, 0.3, 1)',
+              transitionDelay: '200ms',
+              willChange: 'transform, opacity'
+            }}
+          >
             Bir hikayenin başlangıcı
           </p>
         </div>
 
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-sm text-foreground/50 dark:text-white/50 tracking-widest uppercase animate-bounce">
+        {/* Scroll Indicator - Tıklanabilir */}
+        <div 
+          ref={scrollIndicatorRef}
+          onClick={handleScrollClick}
+          className="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-sm text-foreground/50 dark:text-white/50 tracking-widest uppercase animate-bounce cursor-pointer hover:text-foreground dark:hover:text-white transition-colors duration-300 select-none"
+        >
           Scroll ↓
         </div>
       </section>

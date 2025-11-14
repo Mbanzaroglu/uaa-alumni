@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useLayoutEffect } from 'react';
 import content from '@/lib/constants/content.json';
 import pastPeriodsData from '@/lib/constants/past-periods.json';
 import currentManagementData from '@/lib/constants/current-management.json';
@@ -23,6 +23,36 @@ export default function Yonetim() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   // Mobil için expanded state'ler - key: "management-{index}" veya "audit-{index}"
   const [expandedCards, setExpandedCards] = useState<Record<string, boolean>>({});
+  
+  // Açılış animasyonları için state'ler
+  const [headerVisible, setHeaderVisible] = useState(false);
+  const [switchVisible, setSwitchVisible] = useState(false);
+  const [currentManagementVisible, setCurrentManagementVisible] = useState(false);
+
+  // Açılış animasyonları
+  useLayoutEffect(() => {
+    let headerTimer: NodeJS.Timeout;
+    const rafId = requestAnimationFrame(() => {
+      headerTimer = setTimeout(() => {
+        setHeaderVisible(true);
+      }, 100);
+    });
+
+    const switchTimer = setTimeout(() => {
+      setSwitchVisible(true);
+    }, 300);
+
+    const currentManagementTimer = setTimeout(() => {
+      setCurrentManagementVisible(true);
+    }, 500);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      if (headerTimer) clearTimeout(headerTimer);
+      clearTimeout(switchTimer);
+      clearTimeout(currentManagementTimer);
+    };
+  }, []);
 
   useEffect(() => {
     if (showPast) {
@@ -50,7 +80,14 @@ export default function Yonetim() {
       
       <div className="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="mb-12 text-center">
+        <div 
+          className="mb-12 text-center"
+          style={{
+            opacity: headerVisible ? 1 : 0,
+            transform: headerVisible ? 'translateY(0)' : 'translateY(-20px)',
+            transition: 'opacity 800ms cubic-bezier(0.4, 0, 0.2, 1), transform 800ms cubic-bezier(0.4, 0, 0.2, 1)'
+          }}
+        >
           <h1 className="mb-4 text-4xl font-bold tracking-tight sm:text-5xl text-white">
               {content.management.title}
           </h1>
@@ -58,7 +95,14 @@ export default function Yonetim() {
         </div>
 
         {/* Switch Button - Animated */}
-        <div className="flex justify-center mb-12">
+        <div 
+          className="flex justify-center mb-12"
+          style={{
+            opacity: switchVisible ? 1 : 0,
+            transform: switchVisible ? 'translateY(0)' : 'translateY(10px)',
+            transition: 'opacity 600ms cubic-bezier(0.4, 0, 0.2, 1), transform 600ms cubic-bezier(0.4, 0, 0.2, 1)'
+          }}
+        >
           <div className="relative inline-flex items-center bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-1.5 shadow-lg">
             {/* Animated Slider Background */}
             <div
@@ -97,11 +141,26 @@ export default function Yonetim() {
           {!showPast ? (
             <>
               {/* Current Management - Split Reveal Design */}
-              <div className="mb-12 text-center">
+              <div 
+                className="mb-12 text-center"
+                style={{
+                  opacity: currentManagementVisible ? 1 : 0,
+                  transform: currentManagementVisible ? 'translateY(0)' : 'translateY(20px)',
+                  transition: 'opacity 800ms cubic-bezier(0.4, 0, 0.2, 1), transform 800ms cubic-bezier(0.4, 0, 0.2, 1)'
+                }}
+              >
                 <h2 className="text-3xl font-light text-white mb-2">{currentManagementData.yönetim_dönemi} Dönemi</h2>
                 <p className="text-white/60">Yönetim Kurulu</p>
               </div>
-              <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mb-16">
+              <div 
+                className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mb-16"
+                style={{
+                  opacity: currentManagementVisible ? 1 : 0,
+                  transform: currentManagementVisible ? 'translateY(0)' : 'translateY(20px)',
+                  transition: 'opacity 1000ms cubic-bezier(0.4, 0, 0.2, 1), transform 1000ms cubic-bezier(0.4, 0, 0.2, 1)',
+                  transitionDelay: '200ms'
+                }}
+              >
                 {currentManagementData.yönetim_kurulu.map((member, index) => {
                   const cardKey = `management-${index}`;
                   const isExpanded = expandedCards[cardKey];
@@ -204,10 +263,26 @@ export default function Yonetim() {
               </div>
 
               {/* Denetim Kurulu Section */}
-              <div className="mb-12 text-center">
+              <div 
+                className="mb-12 text-center"
+                style={{
+                  opacity: currentManagementVisible ? 1 : 0,
+                  transform: currentManagementVisible ? 'translateY(0)' : 'translateY(20px)',
+                  transition: 'opacity 800ms cubic-bezier(0.4, 0, 0.2, 1), transform 800ms cubic-bezier(0.4, 0, 0.2, 1)',
+                  transitionDelay: '400ms'
+                }}
+              >
                 <h2 className="text-3xl font-light text-white mb-2">Denetim Kurulu</h2>
               </div>
-              <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              <div 
+                className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+                style={{
+                  opacity: currentManagementVisible ? 1 : 0,
+                  transform: currentManagementVisible ? 'translateY(0)' : 'translateY(20px)',
+                  transition: 'opacity 1000ms cubic-bezier(0.4, 0, 0.2, 1), transform 1000ms cubic-bezier(0.4, 0, 0.2, 1)',
+                  transitionDelay: '600ms'
+                }}
+              >
                 {currentManagementData.denetim_kurulu.map((member, index) => {
                   const cardKey = `audit-${index}`;
                   const isExpanded = expandedCards[cardKey];

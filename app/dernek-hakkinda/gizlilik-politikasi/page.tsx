@@ -1,13 +1,52 @@
 'use client';
 
+import { useState, useLayoutEffect } from 'react';
+
 export default function GizlilikPolitikasi() {
+  const [headerVisible, setHeaderVisible] = useState(false);
+  const [sectionsVisible, setSectionsVisible] = useState(false);
+  const [closingVisible, setClosingVisible] = useState(false);
+
+  useLayoutEffect(() => {
+    // Header animasyonu
+    let headerTimer: NodeJS.Timeout;
+    const rafId = requestAnimationFrame(() => {
+      headerTimer = setTimeout(() => {
+        setHeaderVisible(true);
+      }, 100);
+    });
+
+    // Sections animasyonu
+    const sectionsTimer = setTimeout(() => {
+      setSectionsVisible(true);
+    }, 400);
+
+    // Closing statement animasyonu
+    const closingTimer = setTimeout(() => {
+      setClosingVisible(true);
+    }, 800);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      if (headerTimer) clearTimeout(headerTimer);
+      clearTimeout(sectionsTimer);
+      clearTimeout(closingTimer);
+    };
+  }, []);
   return (
     <div className="relative min-h-[calc(100vh-4rem)] bg-[#fafafa] dark:bg-gray-950">
       {/* Minimal Japanese-style Layout */}
       <div className="max-w-[800px] mx-auto px-6 py-20 md:px-12 md:py-32">
         
         {/* Header - Minimal Japanese Style */}
-        <div className="mb-20 pb-8 border-b border-black/10 dark:border-white/10">
+        <div 
+          className="mb-20 pb-8 border-b border-black/10 dark:border-white/10"
+          style={{
+            opacity: headerVisible ? 1 : 0,
+            transform: headerVisible ? 'translateY(0)' : 'translateY(-20px)',
+            transition: 'opacity 800ms cubic-bezier(0.4, 0, 0.2, 1), transform 800ms cubic-bezier(0.4, 0, 0.2, 1)'
+          }}
+        >
           <div className="text-xs uppercase tracking-[3px] text-black/40 dark:text-white/40 mb-6 font-mono">
             UAA Alumni
           </div>
@@ -20,7 +59,14 @@ export default function GizlilikPolitikasi() {
         </div>
 
         {/* Content Sections - Japanese Minimalist Style */}
-        <div className="space-y-16">
+        <div 
+          className="space-y-16"
+          style={{
+            opacity: sectionsVisible ? 1 : 0,
+            transform: sectionsVisible ? 'translateY(0)' : 'translateY(30px)',
+            transition: 'opacity 1000ms cubic-bezier(0.4, 0, 0.2, 1), transform 1000ms cubic-bezier(0.4, 0, 0.2, 1)'
+          }}
+        >
           
           {/* Section 1 */}
           <section className="space-y-6">
@@ -159,7 +205,14 @@ export default function GizlilikPolitikasi() {
         </div>
 
         {/* Closing Statement - Minimal Japanese Style */}
-        <div className="mt-24 pt-16 border-t border-black/10 dark:border-white/10">
+        <div 
+          className="mt-24 pt-16 border-t border-black/10 dark:border-white/10"
+          style={{
+            opacity: closingVisible ? 1 : 0,
+            transform: closingVisible ? 'translateY(0)' : 'translateY(20px)',
+            transition: 'opacity 800ms cubic-bezier(0.4, 0, 0.2, 1), transform 800ms cubic-bezier(0.4, 0, 0.2, 1)'
+          }}
+        >
           <p className="text-base leading-[1.9] text-black/70 dark:text-white/70 font-light italic text-center">
             Verilerinizin Kurumumuz nezdinde hassasiyetle korunduğunu belirtir bize duyduğunuz güven için teşekkür ederiz.
           </p>

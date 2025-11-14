@@ -1,6 +1,45 @@
 'use client';
 
+import { useState, useLayoutEffect } from 'react';
+
 export default function MisyonVizyon() {
+  const [heroVisible, setHeroVisible] = useState(false);
+  const [contentVisible, setContentVisible] = useState(false);
+  const [goalsVisible, setGoalsVisible] = useState(false);
+  const [quoteVisible, setQuoteVisible] = useState(false);
+
+  useLayoutEffect(() => {
+    // Hero section animasyonu
+    let heroTimer: NodeJS.Timeout;
+    const rafId = requestAnimationFrame(() => {
+      heroTimer = setTimeout(() => {
+        setHeroVisible(true);
+      }, 100);
+    });
+
+    // Content section animasyonu
+    const contentTimer = setTimeout(() => {
+      setContentVisible(true);
+    }, 400);
+
+    // Goals section animasyonu
+    const goalsTimer = setTimeout(() => {
+      setGoalsVisible(true);
+    }, 700);
+
+    // Quote section animasyonu
+    const quoteTimer = setTimeout(() => {
+      setQuoteVisible(true);
+    }, 1000);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      if (heroTimer) clearTimeout(heroTimer);
+      clearTimeout(contentTimer);
+      clearTimeout(goalsTimer);
+      clearTimeout(quoteTimer);
+    };
+  }, []);
   return (
     <div>
       {/* Hero Section - Magazine Editorial Style */}
@@ -16,13 +55,36 @@ export default function MisyonVizyon() {
         
         {/* Hero Content */}
         <div className="relative z-10 text-center max-w-[900px] px-10">
-          <div className="text-sm md:text-base font-mono tracking-[4px] text-[#888] dark:text-gray-400 mb-5 transition-colors duration-300">
+          <div 
+            className="text-sm md:text-base font-mono tracking-[4px] text-[#888] dark:text-gray-400 mb-5 transition-colors duration-300"
+            style={{
+              opacity: heroVisible ? 1 : 0,
+              transform: heroVisible ? 'translateY(0)' : 'translateY(-20px)',
+              transition: 'opacity 800ms cubic-bezier(0.4, 0, 0.2, 1), transform 800ms cubic-bezier(0.4, 0, 0.2, 1)'
+            }}
+          >
             UAA ALUMNI
           </div>
-          <h1 className="text-6xl md:text-8xl lg:text-[7rem] font-normal text-white dark:text-white leading-[1.1] mb-5 italic transition-colors duration-300">
+          <h1 
+            className="text-6xl md:text-8xl lg:text-[7rem] font-normal text-white dark:text-white leading-[1.1] mb-5 italic transition-colors duration-300"
+            style={{
+              opacity: heroVisible ? 1 : 0,
+              transform: heroVisible ? 'translateX(0)' : 'translateX(-50px)',
+              transition: 'opacity 1000ms cubic-bezier(0.16, 1, 0.3, 1), transform 1000ms cubic-bezier(0.16, 1, 0.3, 1)',
+              transitionDelay: '200ms'
+            }}
+          >
             Misyon<br/>&<br/>Vizyon
           </h1>
-          <p className="text-lg md:text-xl lg:text-2xl text-[#ccc] dark:text-gray-300 font-light transition-colors duration-300">
+          <p 
+            className="text-lg md:text-xl lg:text-2xl text-[#ccc] dark:text-gray-300 font-light transition-colors duration-300"
+            style={{
+              opacity: heroVisible ? 1 : 0,
+              transform: heroVisible ? 'translateY(0)' : 'translateY(20px)',
+              transition: 'opacity 800ms cubic-bezier(0.4, 0, 0.2, 1), transform 800ms cubic-bezier(0.4, 0, 0.2, 1)',
+              transitionDelay: '400ms'
+            }}
+          >
             Üsküdar Amerikan Lisesi Mezunlar Derneği
           </p>
         </div>
@@ -33,7 +95,14 @@ export default function MisyonVizyon() {
         <div className="max-w-[1200px] mx-auto px-10 py-24 md:py-32">
           
           {/* Two Column Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 mb-20">
+          <div 
+            className="grid grid-cols-1 lg:grid-cols-2 gap-20 mb-20"
+            style={{
+              opacity: contentVisible ? 1 : 0,
+              transform: contentVisible ? 'translateY(0)' : 'translateY(30px)',
+              transition: 'opacity 1000ms cubic-bezier(0.4, 0, 0.2, 1), transform 1000ms cubic-bezier(0.4, 0, 0.2, 1)'
+            }}
+          >
             {/* Left Column - Vizyon */}
             <div>
               <h2 className="text-[2.5rem] leading-tight mb-8 border-l-4 border-[#1a1a1a] dark:border-white pl-5 text-[#1a1a1a] dark:text-white transition-colors duration-300">
@@ -60,7 +129,14 @@ export default function MisyonVizyon() {
           </div>
 
           {/* Mission Points - Full Width with Border */}
-          <div className="border-t border-[#ddd] dark:border-gray-700 pt-16 transition-colors duration-300">
+          <div 
+            className="border-t border-[#ddd] dark:border-gray-700 pt-16 transition-colors duration-300"
+            style={{
+              opacity: goalsVisible ? 1 : 0,
+              transform: goalsVisible ? 'translateY(0)' : 'translateY(30px)',
+              transition: 'opacity 1000ms cubic-bezier(0.4, 0, 0.2, 1), transform 1000ms cubic-bezier(0.4, 0, 0.2, 1)'
+            }}
+          >
             <h3 className="text-lg md:text-xl font-light mb-12 text-[#666] dark:text-gray-400 tracking-wide uppercase transition-colors duration-300">
               Hedeflerimiz
             </h3>
@@ -114,7 +190,14 @@ export default function MisyonVizyon() {
           </div>
 
           {/* Quote Section - Centered, Editorial Style */}
-          <div className="mt-24 pt-16 border-t-2 border-[#1a1a1a] dark:border-white transition-colors duration-300">
+          <div 
+            className="mt-24 pt-16 border-t-2 border-[#1a1a1a] dark:border-white transition-colors duration-300"
+            style={{
+              opacity: quoteVisible ? 1 : 0,
+              transform: quoteVisible ? 'translateY(0)' : 'translateY(30px)',
+              transition: 'opacity 1000ms cubic-bezier(0.4, 0, 0.2, 1), transform 1000ms cubic-bezier(0.4, 0, 0.2, 1)'
+            }}
+          >
             <blockquote className="text-center max-w-3xl mx-auto">
               <p className="text-2xl md:text-3xl lg:text-4xl font-light leading-[1.5] text-[#1a1a1a] dark:text-white italic transition-colors duration-300">
                 &quot;Fark ederek, hissederek, sorumluluk almak ve harekete geçmek&quot;

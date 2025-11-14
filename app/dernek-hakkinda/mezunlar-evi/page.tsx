@@ -1,9 +1,15 @@
 'use client';
 
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useLayoutEffect, useRef } from 'react';
 
 export default function MezunlarEvi() {
+  const [imageVisible, setImageVisible] = useState(false);
+  const [titleVisible, setTitleVisible] = useState(false);
+  const [subtitleText, setSubtitleText] = useState('');
+  const [infoSectionVisible, setInfoSectionVisible] = useState(false);
+  const fullSubtitle = 'Mezunlar Evi - UAA Dostluk ve Buluşma Mekanı';
+
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -16,6 +22,58 @@ export default function MezunlarEvi() {
     purpose: '',
     captcha: ''
   });
+
+  // Resim ve başlık animasyonları için
+  const currentIndexRef = useRef(0);
+  const typeIntervalRef = useRef<NodeJS.Timeout | null>(null);
+
+  useLayoutEffect(() => {
+    // Resim animasyonu - küçük bir gecikme ile başlat
+    let imageTimer: NodeJS.Timeout;
+    const rafId = requestAnimationFrame(() => {
+      imageTimer = setTimeout(() => {
+        setImageVisible(true);
+      }, 150);
+    });
+
+    // Başlık animasyonu - resimden sonra
+    const titleTimer = setTimeout(() => {
+      setTitleVisible(true);
+    }, 500);
+
+    // Typewriter efekti - başlıktan sonra
+    currentIndexRef.current = 0;
+    const typewriterTimer = setTimeout(() => {
+      typeIntervalRef.current = setInterval(() => {
+        if (currentIndexRef.current < fullSubtitle.length) {
+          setSubtitleText(fullSubtitle.slice(0, currentIndexRef.current + 1));
+          currentIndexRef.current++;
+        } else {
+          if (typeIntervalRef.current) {
+            clearInterval(typeIntervalRef.current);
+            typeIntervalRef.current = null;
+          }
+        }
+      }, 50); // Her karakter için 50ms
+    }, 800);
+
+    // Bilgi bölümü animasyonu - typewriter'dan sonra
+    const infoSectionTimer = setTimeout(() => {
+      setInfoSectionVisible(true);
+    }, 750);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      if (imageTimer) clearTimeout(imageTimer);
+      clearTimeout(titleTimer);
+      clearTimeout(typewriterTimer);
+      clearTimeout(infoSectionTimer);
+      if (typeIntervalRef.current) {
+        clearInterval(typeIntervalRef.current);
+        typeIntervalRef.current = null;
+      }
+    };
+  }, [fullSubtitle]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -37,7 +95,13 @@ export default function MezunlarEvi() {
       <section className="relative w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-12 pb-16">
         <div className="relative w-full h-[60vh] sm:h-[70vh] rounded-2xl overflow-hidden">
           {/* Background Image */}
-          <div className="absolute inset-0">
+          <div 
+            className="absolute inset-0"
+            style={{ 
+              opacity: imageVisible ? 1 : 0,
+              transition: 'opacity 1000ms cubic-bezier(0.4, 0, 0.2, 1)'
+            }}
+          >
             <Image
               src="/images/mezunlar-evi.png"
               alt="Kinney Cottage - Mezunlar Evi"
@@ -57,11 +121,25 @@ export default function MezunlarEvi() {
 
           {/* Content Overlay */}
           <div className="absolute inset-0 flex flex-col justify-end p-8 sm:p-12 md:p-16 lg:p-20">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light text-white mb-4 tracking-tight">
+            <h1 
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light text-white mb-4 tracking-tight"
+              style={{
+                opacity: titleVisible ? 1 : 0,
+                transform: titleVisible ? 'translateX(0)' : 'translateX(-100px)',
+                transition: 'opacity 1000ms cubic-bezier(0.16, 1, 0.3, 1), transform 1000ms cubic-bezier(0.16, 1, 0.3, 1)',
+                willChange: 'transform, opacity'
+              }}
+            >
               Kinney Cottage
             </h1>
-            <p className="text-lg sm:text-xl md:text-2xl text-white/80 font-light">
-              Mezunlar Evi - UAA Dostluk ve Buluşma Mekanı
+            <p 
+              className="text-lg sm:text-xl md:text-2xl text-white/80 font-light"
+              style={{ minHeight: '1.5em' }}
+            >
+              {subtitleText}
+              {subtitleText.length < fullSubtitle.length && (
+                <span className="animate-pulse">|</span>
+              )}
             </p>
           </div>
         </div>
@@ -69,7 +147,14 @@ export default function MezunlarEvi() {
 
       {/* Modern Info Section - Minimalist Design */}
       <section className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 mb-16">
-        <div className="flex flex-col md:flex-row items-start md:items-center md:justify-between gap-6 md:gap-8 py-8 border-t border-white/5">
+        <div 
+          className="flex flex-col md:flex-row items-start md:items-center md:justify-between gap-6 md:gap-8 py-8 border-t border-white/5"
+          style={{
+            opacity: infoSectionVisible ? 1 : 0,
+            transform: infoSectionVisible ? 'translateY(0)' : 'translateY(20px)',
+            transition: 'opacity 800ms cubic-bezier(0.4, 0, 0.2, 1), transform 800ms cubic-bezier(0.4, 0, 0.2, 1)'
+          }}
+        >
           {/* Kullanım Saatleri */}
           <div className="flex items-center gap-4 group">
             <div className="flex items-center justify-center w-12 h-12 rounded-full bg-[rgba(33,82,133,0.1)] border border-[rgba(33,82,133,0.2)] group-hover:bg-[rgba(33,82,133,0.2)] transition-all duration-300">
