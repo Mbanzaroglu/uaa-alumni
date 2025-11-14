@@ -4,6 +4,9 @@ import { useState, useLayoutEffect } from 'react';
 
 export default function MisyonVizyon() {
   const [heroVisible, setHeroVisible] = useState(false);
+  const [misyonVisible, setMisyonVisible] = useState(false);
+  const [andVisible, setAndVisible] = useState(false);
+  const [vizyonVisible, setVizyonVisible] = useState(false);
   const [contentVisible, setContentVisible] = useState(false);
   const [goalsVisible, setGoalsVisible] = useState(false);
   const [quoteVisible, setQuoteVisible] = useState(false);
@@ -16,6 +19,17 @@ export default function MisyonVizyon() {
         setHeroVisible(true);
       }, 100);
     });
+
+    // Misyon, &, Vizyon sıralı animasyonları
+    const misyonTimer = setTimeout(() => {
+      setMisyonVisible(true);
+    }, 300);
+    const andTimer = setTimeout(() => {
+      setAndVisible(true);
+    }, 600);
+    const vizyonTimer = setTimeout(() => {
+      setVizyonVisible(true);
+    }, 900);
 
     // Content section animasyonu
     const contentTimer = setTimeout(() => {
@@ -35,6 +49,9 @@ export default function MisyonVizyon() {
     return () => {
       cancelAnimationFrame(rafId);
       if (heroTimer) clearTimeout(heroTimer);
+      clearTimeout(misyonTimer);
+      clearTimeout(andTimer);
+      clearTimeout(vizyonTimer);
       clearTimeout(contentTimer);
       clearTimeout(goalsTimer);
       clearTimeout(quoteTimer);
@@ -65,16 +82,42 @@ export default function MisyonVizyon() {
           >
             UAA ALUMNI
           </div>
-          <h1 
-            className="text-6xl md:text-8xl lg:text-[7rem] font-normal text-white dark:text-white leading-[1.1] mb-5 italic transition-colors duration-300"
-            style={{
-              opacity: heroVisible ? 1 : 0,
-              transform: heroVisible ? 'translateX(0)' : 'translateX(-50px)',
-              transition: 'opacity 1000ms cubic-bezier(0.16, 1, 0.3, 1), transform 1000ms cubic-bezier(0.16, 1, 0.3, 1)',
-              transitionDelay: '200ms'
-            }}
-          >
-            Misyon<br/>&<br/>Vizyon
+          <h1 className="text-6xl md:text-8xl lg:text-[7rem] font-normal text-white dark:text-white leading-[1.1] mb-5 italic transition-colors duration-300" style={{ fontFamily: 'var(--font-besley), serif' }}>
+            <span
+              className="text-6xl md:text-8xl lg:text-[7rem] font-normal text-white dark:text-white leading-[1.1] italic"
+              style={{
+                opacity: misyonVisible ? 1 : 0,
+                transition: 'opacity 800ms cubic-bezier(0.4, 0, 0.2, 1)',
+                display: 'inline-block',
+                fontFamily: 'var(--font-besley), serif'
+              }}
+            >
+              Misyon
+            </span>
+            <br/>
+            <span
+              className="text-6xl md:text-8xl lg:text-[7rem] font-normal text-white dark:text-white leading-[1.1] italic"
+              style={{
+                opacity: andVisible ? 1 : 0,
+                transition: 'opacity 800ms cubic-bezier(0.4, 0, 0.2, 1)',
+                display: 'inline-block',
+                fontFamily: 'var(--font-besley), serif'
+              }}
+            >
+              &
+            </span>
+            <br/>
+            <span
+              className="text-6xl md:text-8xl lg:text-[7rem] font-normal text-white dark:text-white leading-[1.1] italic"
+              style={{
+                opacity: vizyonVisible ? 1 : 0,
+                transition: 'opacity 800ms cubic-bezier(0.4, 0, 0.2, 1)',
+                display: 'inline-block',
+                fontFamily: 'var(--font-besley), serif'
+              }}
+            >
+              Vizyon
+            </span>
           </h1>
           <p 
             className="text-lg md:text-xl lg:text-2xl text-[#ccc] dark:text-gray-300 font-light transition-colors duration-300"
